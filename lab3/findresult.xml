@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLibrary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Library>
+    <file_size>1567</file_size>
+    <name>bookname5</name>
+    <uDK>1g1h5j4j</uDK>
+    <publ>publ</publ>
+    <year>2006</year>
+    <dataLoad>2019-03-20T00:00:00</dataLoad>
+    <author>
+      <id>111</id>
+      <FIO>fio</FIO>
+      <country>country</country>
+    </author>
+    <format>formatk</format>
+    <count_of_pages>153</count_of_pages>
+  </Library>
+</ArrayOfLibrary>

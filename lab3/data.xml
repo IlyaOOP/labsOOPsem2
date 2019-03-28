@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLibrary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Library>
+    <format>pdf</format>
+    <file_size>456</file_size>
+    <name>book2</name>
+    <uDK>7r7t7g7h7n</uDK>
+    <count_of_pages>456</count_of_pages>
+    <publ>bstu</publ>
+    <year>2011</year>
+    <dataLoad>2019-02-27T00:00:00+03:00</dataLoad>
+    <author>
+      <id>2</id>
+      <FIO>F G H</FIO>
+      <country>Belarus</country>
+    </author>
+  </Library>
+  <Library>
+    <format>pdf</format>
+    <file_size>789</file_size>
+    <name>book3</name>
+    <uDK>73c3t4h5j</uDK>
+    <count_of_pages>789</count_of_pages>
+    <publ>bstu</publ>
+    <year>2002</year>
+    <dataLoad>2018-03-28T00:00:00+03:00</dataLoad>
+    <author>
+      <id>3</id>
+      <FIO>J K L</FIO>
+      <country>Belarus</country>
+    </author>
+  </Library>
+  <Library>
+    <format>pdf</format>
+    <file_size>753</file_size>
+    <name>book4</name>
+    <uDK>7f5f9h9j7</uDK>
+    <count_of_pages>753</count_of_pages>
+    <publ>bstu</publ>
+    <year>1916</year>
+    <dataLoad>2019-02-08T00:00:00</dataLoad>
+    <author>
+      <id>4</id>
+      <FIO>Q W E</FIO>
+      <country>belarus</country>
+    </author>
+  </Library>
+  <Library>
+    <format>formatk</format>
+    <file_size>1567</file_size>
+    <name>bookname5</name>
+    <uDK>1g1h5j4j</uDK>
+    <count_of_pages>153</count_of_pages>
+    <publ>publ</publ>
+    <year>2006</year>
+    <dataLoad>2019-03-20T00:00:00</dataLoad>
+    <author>
+      <id>111</id>
+      <FIO>fio</FIO>
+      <country>country</country>
+    </author>
+  </Library>
+</ArrayOfLibrary>

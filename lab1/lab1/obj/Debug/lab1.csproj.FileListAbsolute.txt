@@ -1,0 +1,11 @@
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\bin\Debug\lab1.exe.config
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\bin\Debug\lab1.exe
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\bin\Debug\lab1.pdb
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.csprojAssemblyReference.cache
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.Form1.resources
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.Properties.Resources.resources
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.csproj.GenerateResource.cache
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.csproj.CoreCompileInputs.cache
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.exe
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.pdb
+C:\Users\илья\Desktop\OOP\labs\lab1\lab1\obj\Debug\lab1.Form2.resources
