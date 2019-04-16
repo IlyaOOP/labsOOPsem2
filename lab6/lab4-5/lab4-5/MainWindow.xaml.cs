@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using lab4_5.Properties;
 using Microsoft.Win32;
 
 namespace lab4_5
@@ -25,13 +28,10 @@ namespace lab4_5
         public bool ispaste;
         private mycommands addCommand;
         public MainWindow()
-        {
+        {            
             InitializeComponent();
             addCommand= new mycommands(this);
             this.Cursor = Cursors.Hand;
-            this.Title = Properties.Resources.mainwin;
-            h1.Header = Properties.Resources.h1;
-            h2.Header = Properties.Resources.h2;
             foreach (var ff in Fonts.SystemFontFamilies.ToList())
             {
                 fonts.Items.Add(ff);
@@ -666,6 +666,50 @@ namespace lab4_5
                 Application.Current.Resources.Clear(); 
                 Application.Current.Resources.MergedDictionaries.Add(resourceDict);
             }
+        }
+        
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if(CultureInfo.CurrentCulture.Name== "en-EN")
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
+
+                h1.Header = localizeresourses.menutitle1;
+                h2.Header = localizeresourses.menutitle2;
+                lod.Text = localizeresourses.lastopendocuments;
+                theme.Content = localizeresourses.theme;
+                hnew.Header = localizeresourses.menuitemnew;
+                save.Header = localizeresourses.menuitemsave;
+                open.Header = localizeresourses.menuitemopen;
+                copy.Header = localizeresourses.menuitemcopy;
+                paste.Header = localizeresourses.menuitempaste;
+                fc.Header = localizeresourses.menuitemfontcolor;
+                undo.Header = localizeresourses.undo;
+                redo.Header = localizeresourses.redo;
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-EN");
+                h1.Header = Resources_en_EN.menutitle1;
+                h2.Header = Resources_en_EN.menutitle2;
+                lod.Text = Resources_en_EN.lastopendocuments;
+                theme.Content = Resources_en_EN.theme;
+                hnew.Header = Resources_en_EN.menuitemnew;
+                save.Header = Resources_en_EN.menuitemsave;
+                open.Header = Resources_en_EN.menuitemopen;
+                copy.Header = Resources_en_EN.menuitemcopy;
+                paste.Header = Resources_en_EN.menuitempaste;
+                fc.Header = Resources_en_EN.menuitemfontcolor;
+                undo.Header = Resources_en_EN.undo;
+                redo.Header = Resources_en_EN.redo;
+            }
+        }
+
+        private void H1_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

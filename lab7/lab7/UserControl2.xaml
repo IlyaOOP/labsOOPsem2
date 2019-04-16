@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="lab7.UserControl2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:lab7"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="200">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation Storyboard.TargetProperty="Stroke.Color" Storyboard.TargetName="e1"
+                            From="BlueViolet" To="OrangeRed"
+                                        AutoReverse="True"
+                                        Duration="0:0:3"
+                                        RepeatBehavior="Forever"/>                        
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+        <Rectangle Name="e1" Fill="Blue" HorizontalAlignment="Stretch" Height="80" Width="200" RadiusX="40" RadiusY="30" StrokeThickness="10" Stroke="BlueViolet" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

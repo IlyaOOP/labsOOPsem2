@@ -61,29 +61,119 @@ namespace lab4_5.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на последний открытый ддокумент.
+        /// </summary>
+        public static string lastopendocuments {
+            get {
+                return ResourceManager.GetString("lastopendocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Копировать.
+        /// </summary>
+        public static string menuitemcopy {
+            get {
+                return ResourceManager.GetString("menuitemcopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Шрифт/цвет.
+        /// </summary>
+        public static string menuitemfontcolor {
+            get {
+                return ResourceManager.GetString("menuitemfontcolor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Новый.
+        /// </summary>
+        public static string menuitemnew {
+            get {
+                return ResourceManager.GetString("menuitemnew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Открыть.
+        /// </summary>
+        public static string menuitemopen {
+            get {
+                return ResourceManager.GetString("menuitemopen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вставить.
+        /// </summary>
+        public static string menuitempaste {
+            get {
+                return ResourceManager.GetString("menuitempaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранить.
+        /// </summary>
+        public static string menuitemsave {
+            get {
+                return ResourceManager.GetString("menuitemsave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на файл.
         /// </summary>
-        public static string h1 {
+        public static string menutitle1 {
             get {
-                return ResourceManager.GetString("h1", resourceCulture);
+                return ResourceManager.GetString("menutitle1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на редактировать.
         /// </summary>
-        public static string h2 {
+        public static string menutitle2 {
             get {
-                return ResourceManager.GetString("h2", resourceCulture);
+                return ResourceManager.GetString("menutitle2", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на программа.
         /// </summary>
-        public static string mainwin {
+        public static string programmtitle {
             get {
-                return ResourceManager.GetString("mainwin", resourceCulture);
+                return ResourceManager.GetString("programmtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на повторить.
+        /// </summary>
+        public static string redo {
+            get {
+                return ResourceManager.GetString("redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на тема.
+        /// </summary>
+        public static string theme {
+            get {
+                return ResourceManager.GetString("theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на отмена.
+        /// </summary>
+        public static string undo {
+            get {
+                return ResourceManager.GetString("undo", resourceCulture);
             }
         }
     }

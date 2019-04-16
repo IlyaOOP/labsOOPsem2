@@ -4,11 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab4_5"
+        xmlns:res="clr-namespace:lab4_5.Properties"
         mc:Ignorable="d"
         Name="a" Title="MainWindow" Height="450" Width="900" MinWidth="400" Style="{DynamicResource WindowStyle}">
-
+    
     <Window.Resources>
-
+        <Style x:Key="a" TargetType="Button">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsMouseOver" Value="True"></Condition>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Foreground" Value="Red"></Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
         <ControlTemplate TargetType="Button" x:Key="btTemplate">
             <Border CornerRadius="8" BorderBrush="red"
                     Background="Blue" Height="20" Width="20" >
@@ -24,17 +36,17 @@
             <RowDefinition Height="26*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Margin="0,2,-0.4,1" RenderTransformOrigin="0.5,0.504" Style="{DynamicResource menystyle}">
-            <MenuItem Name="h1" Header="File" VerticalAlignment="Stretch">
-                <MenuItem Header="new" VerticalAlignment="Stretch" Click="MenuItem_Click" ></MenuItem>
-                <MenuItem Header="save" VerticalAlignment="Stretch" Click="MenuItem_Click_4" ></MenuItem>
-                <MenuItem Header="open" VerticalAlignment="Stretch" Click="MenuItem_Click_5" ></MenuItem>
+            <MenuItem Name="h1" Header="{x:Static res:Resources.menutitle1}" VerticalAlignment="Stretch" Click="H1_Click">
+                <MenuItem Name="hnew" Header="{x:Static res:Resources.menuitemnew}" VerticalAlignment="Stretch" Click="MenuItem_Click" ></MenuItem>
+                <MenuItem Name="save" Header="{x:Static res:Resources.menuitemsave}" VerticalAlignment="Stretch" Click="MenuItem_Click_4" ></MenuItem>
+                <MenuItem Name="open" Header="{x:Static res:Resources.menuitemopen}" VerticalAlignment="Stretch" Click="MenuItem_Click_5" ></MenuItem>
             </MenuItem>
-            <MenuItem Name="h2" Header="edit" VerticalAlignment="Stretch" >
-                <MenuItem Header="copy" VerticalAlignment="Stretch" Click="MenuItem_Click_1" ></MenuItem>
-                <MenuItem Header="paste" VerticalAlignment="Stretch" Click="MenuItem_Click_2" Command="{Binding AddCommand}"></MenuItem>
-                <MenuItem Header="font/color" VerticalAlignment="Stretch" Click="MenuItem_Click_3" ></MenuItem>
-                <MenuItem Header="undo" VerticalAlignment="Stretch" Click="MenuItem_Click_6"></MenuItem>
-                <MenuItem Header="redo" VerticalAlignment="Stretch" Click="MenuItem_Click_7"></MenuItem>
+            <MenuItem Name="h2" Header="{x:Static res:Resources.menutitle2}" VerticalAlignment="Stretch" >
+                <MenuItem Name="copy" Header="{x:Static res:Resources.menuitemcopy}" VerticalAlignment="Stretch" Click="MenuItem_Click_1" ></MenuItem>
+                <MenuItem Name="paste" Header="{x:Static res:Resources.menuitempaste}" VerticalAlignment="Stretch" Click="MenuItem_Click_2" Command="{Binding AddCommand}"></MenuItem>
+                <MenuItem Name="fc" Header="{x:Static res:Resources.menuitemfontcolor}" VerticalAlignment="Stretch" Click="MenuItem_Click_3" ></MenuItem>
+                <MenuItem Name="undo" Header="{x:Static res:Resources.undo}" VerticalAlignment="Stretch" Click="MenuItem_Click_6"></MenuItem>
+                <MenuItem Name="redo" Header="{x:Static res:Resources.redo}" VerticalAlignment="Stretch" Click="MenuItem_Click_7"></MenuItem>
             </MenuItem>
             <ComboBox VerticalAlignment="Stretch" Name="fonts" Width="100" SelectionChanged="Fonts_SelectionChanged"></ComboBox>
             <Slider Name="fsize" VerticalAlignment="Stretch" Width="100" Minimum="5" Maximum="100" Value="10" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="Fsize_ValueChanged"></Slider>
@@ -44,15 +56,16 @@
             <ToggleButton Checked="ToggleButton_Checked_2" Name="pod" Unchecked="unchecked_underline">
                 <Underline>ч</Underline>
             </ToggleButton>
-            <TextBlock>Последние открытые докуметы:</TextBlock>
+            <TextBlock Name="lod" Text="{x:Static res:Resources.lastopendocuments}"></TextBlock>
             <ComboBox VerticalAlignment="Stretch" HorizontalAlignment="Right" Name="files" Width="100" SelectionChanged="Files_SelectionChanged"></ComboBox>
-            <Button Content="тема" Width="66" Click="Button_Click_1" Style="{DynamicResource buttonstyle}"/>
+            <Button Name="theme" Content="{x:Static res:Resources.theme}" Width="66" Click="Button_Click_1" Style="{DynamicResource buttonstyle}"/>
         </Menu>
 
         <StatusBar Grid.Row="3" Margin="0,3,-0.4,0" Style="{DynamicResource stbarstyle}">
             <TextBlock Name="statusbar">символов 0 строк 0</TextBlock>
-            <Button Template="{ StaticResource btTemplate}" Content="Button" Width="75" Click="Button_Click"/>
+            <Button Template="{ StaticResource btTemplate}" Style="{StaticResource a}" Content="Button" Width="75" Click="Button_Click"/>
             <local:UserControl1 x:Name="myel"></local:UserControl1>
+            <Button Content="ru/en" Width="50" Height="40" FontSize="20" Style="{DynamicResource buttonstyle}" Click="Button_Click_2"/>
         </StatusBar>
         <ToolBar Name="winbar" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Margin="0,0,-0.4,0.4"  Style="{DynamicResource toolbarstyle}"></ToolBar>
         <StackPanel Name="textContainer" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Margin="0,0.6,-0.4,43" Grid.RowSpan="2"></StackPanel>
