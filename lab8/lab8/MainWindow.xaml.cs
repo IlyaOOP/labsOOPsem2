@@ -86,7 +86,7 @@ namespace lab8
 
         public static void writeDBAuthor(string authnamecode, string authname)
         {
-            if(authname.Length>3)
+            if(authnamecode.Length>3)
             {
                 MessageBox.Show("DataError");
                 return;

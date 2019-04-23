@@ -83,5 +83,42 @@ namespace lab8
                 MainWindow.PutImageBinaryInDbAuthor(file, authnamecode);
             }
         }
+
+        private void addbookbut_Click(object sender, EventArgs e)
+        {
+            string bookname = "";
+            int booksize=0;
+            string authfio="";
+
+            if (comboFIO.SelectedItem != null)
+            {
+                authfio = comboFIO.SelectedItem.ToString();
+            }
+            else
+            {
+                MessageBox.Show("поле ФИО автора не может быть пустым");
+                return;
+            }
+
+            if (booksizefield.Text != null)
+            {
+                Int32.TryParse(booksizefield.Text, out booksize);
+            }
+            else
+            {
+                MessageBox.Show("поле размер книги не может быть пустым");
+                return;
+            }
+
+            if (booknamefield.Text != null)
+            {
+                bookname = booknamefield.Text;
+            }
+            else {
+                MessageBox.Show("поле название книги не может быть пустым");
+                return;
+            }
+            MainWindow.writeDBBook(bookname, booksize, authfio);
+        }
     }
 }

@@ -31,10 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboFIO = new System.Windows.Forms.ComboBox();
             this.addbookbut = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.booksize = new System.Windows.Forms.TextBox();
-            this.bookname = new System.Windows.Forms.TextBox();
+            this.booksizefield = new System.Windows.Forms.TextBox();
+            this.booknamefield = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.addauthbut = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,7 +44,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.comboFIO = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -73,8 +73,8 @@
             this.groupBox1.Controls.Add(this.comboFIO);
             this.groupBox1.Controls.Add(this.addbookbut);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.booksize);
-            this.groupBox1.Controls.Add(this.bookname);
+            this.groupBox1.Controls.Add(this.booksizefield);
+            this.groupBox1.Controls.Add(this.booknamefield);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 13);
@@ -83,6 +83,14 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "добавление книги";
+            // 
+            // comboFIO
+            // 
+            this.comboFIO.FormattingEnabled = true;
+            this.comboFIO.Location = new System.Drawing.Point(7, 155);
+            this.comboFIO.Name = "comboFIO";
+            this.comboFIO.Size = new System.Drawing.Size(121, 24);
+            this.comboFIO.TabIndex = 11;
             // 
             // addbookbut
             // 
@@ -93,6 +101,7 @@
             this.addbookbut.TabIndex = 10;
             this.addbookbut.Text = "Добавить";
             this.addbookbut.UseVisualStyleBackColor = true;
+            this.addbookbut.Click += new System.EventHandler(this.addbookbut_Click);
             // 
             // label5
             // 
@@ -103,20 +112,20 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "ФИО автора";
             // 
-            // booksize
+            // booksizefield
             // 
-            this.booksize.Location = new System.Drawing.Point(9, 100);
-            this.booksize.Name = "booksize";
-            this.booksize.Size = new System.Drawing.Size(370, 22);
-            this.booksize.TabIndex = 3;
-            this.booksize.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.booksizefield.Location = new System.Drawing.Point(9, 100);
+            this.booksizefield.Name = "booksizefield";
+            this.booksizefield.Size = new System.Drawing.Size(370, 22);
+            this.booksizefield.TabIndex = 3;
+            this.booksizefield.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // bookname
+            // booknamefield
             // 
-            this.bookname.Location = new System.Drawing.Point(7, 51);
-            this.bookname.Name = "bookname";
-            this.bookname.Size = new System.Drawing.Size(370, 22);
-            this.bookname.TabIndex = 2;
+            this.booknamefield.Location = new System.Drawing.Point(7, 51);
+            this.booknamefield.Name = "booknamefield";
+            this.booknamefield.Size = new System.Drawing.Size(370, 22);
+            this.booknamefield.TabIndex = 2;
             // 
             // groupBox2
             // 
@@ -191,14 +200,6 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // comboFIO
-            // 
-            this.comboFIO.FormattingEnabled = true;
-            this.comboFIO.Location = new System.Drawing.Point(7, 155);
-            this.comboFIO.Name = "comboFIO";
-            this.comboFIO.Size = new System.Drawing.Size(121, 24);
-            this.comboFIO.TabIndex = 11;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -221,8 +222,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox booksize;
-        private System.Windows.Forms.TextBox bookname;
+        private System.Windows.Forms.TextBox booksizefield;
+        private System.Windows.Forms.TextBox booknamefield;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
