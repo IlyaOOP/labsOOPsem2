@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab8"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid Name="objgrid" HorizontalAlignment="Left" Height="410" Margin="10,10,0,0" VerticalAlignment="Top" AutoGenerateColumns="True" ItemsSource="{DynamicResource ResourceKey=objs}"/>
+        <Button Content="Добавить запись" HorizontalAlignment="Left" Margin="688,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>

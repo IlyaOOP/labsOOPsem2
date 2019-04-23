@@ -13,3 +13,4 @@ C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab8\lab8\obj\Debug\lab8.csproj.G
 C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab8\lab8\obj\Debug\lab8.csproj.CoreCompileInputs.cache
 C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab8\lab8\obj\Debug\lab8.exe
 C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab8\lab8\obj\Debug\lab8.pdb
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab8\lab8\obj\Debug\lab8.Form1.resources
