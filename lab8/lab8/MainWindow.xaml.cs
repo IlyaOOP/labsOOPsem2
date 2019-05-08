@@ -18,6 +18,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Drawing;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Diagnostics;
 
 namespace lab8
 {
@@ -26,24 +29,34 @@ namespace lab8
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string connectionString = @"Data Source=DESKTOP-P7C21AR\SQLEXPRESS;Initial Catalog=libruary;Integrated Security=True;User ID=user_lab8;password=password1234567";
-        static SqlConnection connection = new SqlConnection(connectionString);
+        static int i = 0;
+        static string connectionString = @"Data Source=DESKTOP-P7C21AR\SQLEXPRESS;Initial Catalog=libruary;Integrated Security=True;User ID=user_lab8;password=password1234567;MultipleActiveResultSets=True";
+        static SqlConnection connection = new SqlConnection(connectionString); 
 
         public MainWindow()
         {
             InitializeComponent();
             connectdb();
-            /*objgrid.ItemsSource = listbook;
-            PutImageBinaryInDb(@"C:\Users\илья\Desktop\КП\sliced.png", "as");
-            writeDB("as", "qw");
-            disconnectdb();*/
+            readDBauthor();
+            readDBbook();
+            objgrid.ItemsSource = listbook;
+            authgrid.ItemsSource = listauth;
+            //disconnectdb();
         }
 
-        List<book> listbook = new List<book>
+        static List<book> listbook = new List<book>
         {
-            new book { name="asd", size="520"},
-            new book {name="qwe", size="1040"}
-        };        
+            new book {key="0", name="err", size="1111111111"},
+            new book {key = "0", name="err", size="1111111111"}
+        };
+        static List<Author> listauth = new List<Author>
+        {
+            new Author { authornamecode="err", name="err"}
+        };
+        static List<string> images = new List<string>
+        {
+
+        };
 
         static void connectdb()
         {                    
@@ -65,12 +78,94 @@ namespace lab8
             MessageBox.Show("Подключение закрыто...");
         }
 
+        public static void readDBauthor()
+        {
+            listauth.Clear();
+            SqlCommand cmm = new SqlCommand();
+            cmm.CommandText = "select authorname, authornamecode, photo from authors";
+            cmm.Connection = connection;
+            using (SqlDataReader reader = cmm.ExecuteReader())
+            {
+                string ext;
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        ext = GetImageBinaryFromDb(reader.GetValue(0).ToString());                        
+                        listauth.Add(new Author { name = reader.GetValue(0).ToString(), authornamecode= reader.GetValue(1).ToString() });
+                        images.Add(@"C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab8\lab8\tmp\result_new"+ext);
+                    }
+                }
+            }
+            int number = cmm.ExecuteNonQuery();            
+        }
+        public static void readDBbook()
+        {
+            listbook.Clear();
+            SqlCommand cmm = new SqlCommand();
+            cmm.CommandText = "select id, bookname, size, (select authorname from authors where authornamecode=b.authornamecode) from books b";
+            cmm.Connection = connection;
+            using (SqlDataReader reader = cmm.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        listbook.Add(new book {key= reader.GetValue(0).ToString(), name = reader.GetValue(1).ToString(), size = reader.GetValue(2).ToString(), authorname = reader.GetValue(3).ToString() });
+                    }
+                }
+            }
+            int number = cmm.ExecuteNonQuery();
+        }
+        private static string GetImageBinaryFromDb(string param)
+        {
+            // получаем данные их БД
+            List<byte[]> iScreen = new List<byte[]>(); // сделав запрос к БД мы получим множество строк в ответе, поэтому мы их сможем загнать в массив/List
+            List<string> iScreen_format = new List<string>();
+//            using (SqlConnection sqlConnection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=dbtest; User Id=sa; Password=pass"))
+ //           {
+                //connection.Open();
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = @"SELECT [photo], [photo_format] FROM [authors] where [authorname]=@authcode"; // наша запись в БД под id=1, поэтому в запросе "WHERE [id] = 1"
+                sqlCommand.Parameters.AddWithValue("@authcode", param);
+                SqlDataReader sqlReader = sqlCommand.ExecuteReader();
+                byte[] iTrimByte = null;
+                string iTrimText = null;
+                while (sqlReader.Read()) // считываем и вносим в лист результаты
+                {
+                    iTrimByte = (byte[])sqlReader["photo"]; // читаем строки с изображениями
+                    iScreen.Add(iTrimByte);
+                    iTrimText = sqlReader["photo_format"].ToString().TrimStart().TrimEnd(); // читаем строки с форматом изображения
+                    iScreen_format.Add(iTrimText);
+                }
+                sqlCommand.Dispose();
+                sqlReader.Close();
+                //connection.Close();
+ //           }
+
+            // конвертируем бинарные данные в изображение
+            byte[] imageData = iScreen[0]; // возвращает массив байт из БД. Так как у нас SQL вернёт одну запись и в ней хранится нужное нам изображение, то из листа берём единственное значение с индексом '0'
+            MemoryStream ms = new MemoryStream(imageData);
+            System.Drawing.Image newImage = System.Drawing.Image.FromStream(ms);
+            i++;
+            // сохраняем изоражение на диск
+            string iImageExtension = iScreen_format[0]; // получаем расширение текущего изображения хранящееся в БД
+            string iImageName = @"C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab8\lab8\tmp\result_new"+i + "." + iImageExtension; // задаём путь сохранения и имя нового изображения
+            if (iImageExtension == "png") { newImage.Save(iImageName, System.Drawing.Imaging.ImageFormat.Png); }
+            else if (iImageExtension == "jpg" || iImageExtension == "jpeg") { newImage.Save(iImageName, System.Drawing.Imaging.ImageFormat.Jpeg); }
+            else if (iImageExtension == "gif") { newImage.Save(iImageName, System.Drawing.Imaging.ImageFormat.Gif); }
+            // и т.д., можно все if заменить на одну строку "newImage.Save(iImageName)", насколько это правильно сказать не могу, но работает
+            return i+"."+iImageExtension;
+        }
+        
+
         public static void writeDBBook(string bookname, int size, string authname)
         {
             try
             {
                 SqlCommand cmm = new SqlCommand();
-                cmm.CommandText = "insert into books (bookname, size, authornamecode) values ('asdfr', 5, (select authornamecode from authors where authorname=@name))";
+                cmm.CommandText = "insert into books (bookname, size, authornamecode) values (@bookname, @size, (select authornamecode from authors where authorname=@name))";
                 cmm.Parameters.AddWithValue("@bookname", bookname);
                 cmm.Parameters.AddWithValue("@size", size);
                 cmm.Parameters.AddWithValue("@name", authname);
@@ -82,6 +177,7 @@ namespace lab8
             {
                 MessageBox.Show(ex.ToString());
             }
+            readDBbook();
         }
 
         public static void writeDBAuthor(string authnamecode, string authname)
@@ -105,6 +201,7 @@ namespace lab8
             {
                 MessageBox.Show(ex.ToString());
             }
+            readDBauthor();
         }
 
         public static void PutImageBinaryInDbAuthor(string iFile, string where)
@@ -151,12 +248,93 @@ namespace lab8
             Form1 f1 = new Form1(this, authornames);
             f1.Show();
         }
+
+        private void Authdblclc(object sender, MouseButtonEventArgs e)
+        {
+            int index = authgrid.SelectedIndex;
+            if (images.Count > index)
+            {
+                photobox.Source = new BitmapImage(new Uri(images.ElementAt(index)));
+            }
+            else MessageBox.Show("err");
+        }
+
+        private void updateclick(object sender, RoutedEventArgs e)
+        {
+            objgrid.Items.Refresh();
+            authgrid.Items.Refresh();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)//delete author
+        {
+            try
+            {
+                Author selected;
+                int index = -1;
+                if (authgrid.SelectedItem != null)
+                {
+                    index = authgrid.SelectedIndex;
+                    selected = (Author)authgrid.SelectedItem;
+                    listauth.RemoveAt(index);
+                    authgrid.Items.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("элемент не  выделен");
+                    return;
+                }
+                string commandText = "delete from books where authornamecode=@code;delete from authors where authornamecode = @code";
+                SqlCommand command = new SqlCommand(commandText, connection);
+                command.Parameters.AddWithValue("@code", selected.authornamecode);
+                MessageBox.Show("удалено " + command.ExecuteNonQuery());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("unknown error"+ex.Message);
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)//delete book
+        {
+            try
+            {
+                book selected;
+                int index = -1;
+                if (objgrid.SelectedItem != null)
+                {
+                    index = objgrid.SelectedIndex;
+                    selected = (book)objgrid.SelectedItem;
+                    listbook.RemoveAt(index);
+                    objgrid.Items.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("элемент не  выделен");
+                    return;
+                }
+                string commandText = "delete from books where id=@key";
+                SqlCommand command = new SqlCommand(commandText, connection);
+                command.Parameters.AddWithValue("@key", selected.key);
+                MessageBox.Show("удалено " + command.ExecuteNonQuery());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("unknown error" + ex.Message);
+            }
+        }
     }
 
     public class book
     {
+        public string key { get; set; }
         public string name { get; set; }
         public string size { get; set; }
+        public string authorname { get; set; }
         
+    }
+    public class Author
+    {
+        public string authornamecode { get; set; }
+        public string name { get; set; }
     }
 }

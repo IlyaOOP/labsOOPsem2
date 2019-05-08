@@ -81,7 +81,7 @@ namespace lab8
             else
             {
                 MainWindow.PutImageBinaryInDbAuthor(file, authnamecode);
-            }
+            }            
         }
 
         private void addbookbut_Click(object sender, EventArgs e)
