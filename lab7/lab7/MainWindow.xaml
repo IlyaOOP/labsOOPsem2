@@ -5,15 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab7"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-   
+        Title="MainWindow" Height="750" Width="1200">
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="303*"/>
+            <ColumnDefinition Width="231*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
-            <RowDefinition Height="67*"/>
-            <RowDefinition Height="73*"/>
+            <RowDefinition Height="205*"/>
+            <RowDefinition Height="127*"/>
+            <RowDefinition Height="389*"/>
         </Grid.RowDefinitions>
-        <local:UserControl1 x:Name="fields" Grid.Row="1" Width="200" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <local:UserControl2 Grid.Row="2" Width="200" HorizontalAlignment="Center" MouseLeftButtonDown="onClick"/>
+        <local:UserControl1 x:Name="fields" Grid.Row="1" Width="200" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="62.8,56,40.4,48.8" Grid.Column="1"/>
+        <local:UserControl2 Grid.Row="2" Width="200" HorizontalAlignment="Center" MouseLeftButtonDown="onClick" Margin="62.8,1.2,40.4,-0.2" Grid.RowSpan="2" Grid.Column="1"/>
+        <Border BorderThickness="5"  Grid.Column="0" Grid.Row="3">
+            <DockPanel HorizontalAlignment="Stretch">
+                <TextBlock Name="textBlock1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="поднимаюшееся событие " VerticalAlignment="Top"/>
+                <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" MouseDown="Control_MouseDown">
+                    <Button x:Name="button1" Width="80" Height="50" MouseDown="Control_MouseDown" Margin="10" >
+                        <Ellipse Width="30" Height="30" Fill="Blue" MouseDown="Control_MouseDown" />
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        <Border BorderThickness="5"  Grid.Column="1" Grid.Row="3">
+            <DockPanel HorizontalAlignment="Stretch">
+                <TextBlock Name="textBlock2" Grid.Column="1" HorizontalAlignment="Left" Margin="9.8,13,0,0" Grid.Row="3" TextWrapping="Wrap" Text="туннельное событие" VerticalAlignment="Top"/>
+                <StackPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" PreviewMouseDown="Control_MouseDown1">
+                    <Button x:Name="button2" Width="80" Height="50" PreviewMouseDown="Control_MouseDown1" Margin="10" >
+                        <Ellipse Width="30" Height="30" Fill="Blue" PreviewMouseDown="Control_MouseDown1" />
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        <Border BorderThickness="5"  Grid.Column="2" Grid.Row="3">
+            <DockPanel HorizontalAlignment="Stretch">
+                <TextBlock Name="textBlock3" Grid.Column="2" HorizontalAlignment="Left" Margin="9.6,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="прямая маршрутизация" VerticalAlignment="Top"/>
+                <StackPanel Grid.Column="2" Grid.Row="3" VerticalAlignment="Center">
+                    <Button x:Name="button3" Width="80" Height="50" PreviewMouseDown="Control_MouseDown2" Margin="10"></Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
     </Grid>
 </Window>

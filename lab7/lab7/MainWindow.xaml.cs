@@ -31,5 +31,23 @@ namespace lab7
             string password = fields.field2.Password.ToString();
             MessageBox.Show("Логин - " + login + ", Пароль - " + password);
         }
+
+        private void Control_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            textBlock1.Text = textBlock1.Text + "\n" + "sender: " + sender.ToString();
+            textBlock1.Text = textBlock1.Text + "\n" + "source: " + e.Source.ToString()+ "\n";
+        }
+
+        private void Control_MouseDown1(object sender, MouseButtonEventArgs e)
+        {
+            textBlock2.Text = textBlock2.Text + "\n" + "sender: " + sender.ToString();
+            textBlock2.Text = textBlock2.Text + "\n" + "source: " + e.Source.ToString() + "\n";
+        }
+
+        private void Control_MouseDown2(object sender, MouseButtonEventArgs e)
+        {
+            textBlock3.Text = textBlock3.Text + "\n" + "sender: " + sender.ToString();
+            textBlock3.Text = textBlock3.Text + "\n" + "source: " + e.Source.ToString() + "\n";
+        }
     }
 }
