@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:lab7"
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1200">
-
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comm.Reload" Executed="Reload_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="259*"/>
@@ -49,5 +51,6 @@
                 </StackPanel>
             </DockPanel>
         </Border>
+        <Button x:Name="Button1" Content="перезапустить" Command="local:Comm.Reload" Grid.Column="2" Margin="202.4,1,8.6,165.8" Grid.RowSpan="2"/>
     </Grid>
 </Window>

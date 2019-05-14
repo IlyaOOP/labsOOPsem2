@@ -34,7 +34,7 @@ namespace lab7
         static Reg()
         {
             FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata();
-            loginProperty = DependencyProperty.Register("Login", typeof(string), typeof(Reg)/*, metadata, new ValidateValueCallback(ValidateValue)*/);
+            loginProperty = DependencyProperty.Register("Login", typeof(string), typeof(Reg));
         }
         private static bool ValidateValue(object value)
         {

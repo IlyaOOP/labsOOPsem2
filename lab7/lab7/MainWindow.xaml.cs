@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace lab7
         public MainWindow()
         {
             InitializeComponent();
-        }
+        }        
 
         private void onClick(object sender, MouseButtonEventArgs e)
         {
@@ -49,5 +50,21 @@ namespace lab7
             textBlock3.Text = textBlock3.Text + "\n" + "sender: " + sender.ToString();
             textBlock3.Text = textBlock3.Text + "\n" + "source: " + e.Source.ToString() + "\n";
         }
+
+        private void Reload_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "lab7.exe";
+            Process.Start(path);
+            System.Windows.Application.Current.Shutdown();
+        }
+    }
+
+    public class Comm
+    {
+        static Comm()
+        {
+            Reload = new RoutedCommand("Reload", typeof(MainWindow));
+        }
+        public static RoutedCommand Reload { get; set; }
     }
 }
