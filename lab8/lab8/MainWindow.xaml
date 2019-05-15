@@ -16,8 +16,8 @@
             <RowDefinition Height="103*"/>
             <RowDefinition Height="37*"/>
         </Grid.RowDefinitions>
-        <DataGrid Name="objgrid" HorizontalAlignment="Left"  VerticalAlignment="Top" AutoGenerateColumns="True" Grid.Row="0"/>
-        <DataGrid Name="authgrid" HorizontalAlignment="Left"   VerticalAlignment="Top" AutoGenerateColumns="True" Grid.Row="0" Grid.Column="1" MouseDoubleClick="Authdblclc" />
+        <DataGrid Name="objgrid" HorizontalAlignment="Left"  VerticalAlignment="Top" AutoGenerateColumns="True" Grid.Row="0" SelectedCellsChanged="bookchanged"/>
+        <DataGrid Name="authgrid" HorizontalAlignment="Left"   VerticalAlignment="Top" AutoGenerateColumns="True" Grid.Row="0" Grid.Column="1" MouseDoubleClick="Authdblclc" SelectedCellsChanged="authorchanged" />
 
         <Button Content="Добавить запись" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Click" Height="19" Width="96" Grid.Column="1"/>
         <Image Name="photobox" HorizontalAlignment="Left" Height="110" Margin="0,0.2,0,0" VerticalAlignment="Top" Width="110" Grid.Row="1"/>

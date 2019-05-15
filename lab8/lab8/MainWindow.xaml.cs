@@ -322,10 +322,151 @@ namespace lab8
                 MessageBox.Show("unknown error" + ex.Message);
             }
         }
+
+        private void bookchanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid dgr = (DataGrid)sender;
+            List<string> dblist = new List<string>();
+            List<string> applist = new List<string>();
+
+            dblist.Clear();//заполнение dblist
+            SqlCommand cmm = new SqlCommand();
+            cmm.CommandText = "select id, bookname, size, (select authorname from authors where authornamecode=b.authornamecode) from books b";
+            cmm.Connection = connection;
+            using (SqlDataReader reader = cmm.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        dblist.Add( reader.GetValue(0).ToString() + reader.GetValue(1).ToString() + reader.GetValue(2).ToString() + reader.GetValue(3).ToString() );
+                    }
+                }
+            }
+            cmm.ExecuteNonQuery();
+
+            applist.Clear();//заполнение applist
+            for(int i=0; i<objgrid.Items.Count-1;i++)
+            {
+                applist.Add(objgrid.Items.GetItemAt(i).ToString());
+            }
+
+            IEnumerable<string> s = dblist.Except(applist);
+            if (s.Count()>0)
+            {
+                string res="";
+                string id = s.ElementAt(0).Substring(0, 4);
+                book changedbook;
+                foreach(var v in objgrid.Items)
+                {
+                    changedbook = (book)v;
+                    if(changedbook.key==id)
+                    {
+                        int sz, iid;
+                        int.TryParse(changedbook.size, out sz);
+                        int.TryParse(id, out iid);
+                        try
+                        {
+                        SqlCommand cmmd = new SqlCommand();
+                            cmmd.CommandText = "update books set bookname=@bookname, size=@size where id=@id";
+                            cmmd.Parameters.AddWithValue("@bookname", changedbook.name);
+                            cmmd.Parameters.AddWithValue("@size", sz);
+                            cmmd.Parameters.AddWithValue("@id", iid);
+                            cmmd.Connection = connection;
+                            cmmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                        break;
+                    }
+                }
+                
+                for (int i=0;i<s.Count();i++)
+                {
+                    res = s.ElementAt(i);
+                }
+                MessageBox.Show("Изменено: " + res);
+            }
+        }
+
+        private void authorchanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid dgr = (DataGrid)sender;
+            List<string> dblist = new List<string>();
+            List<string> applist = new List<string>();
+
+            dblist.Clear();//заполнение dblist
+
+            SqlCommand cmm = new SqlCommand();
+            cmm.CommandText = "select authorname, authornamecode from authors";
+            cmm.Connection = connection;
+            using (SqlDataReader reader = cmm.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        dblist.Add(reader.GetValue(1).ToString()  + "|" + reader.GetValue(0).ToString() );                        
+                    }
+                }
+            }
+
+            applist.Clear();//заполнение applist
+            for (int i = 0; i < authgrid.Items.Count - 1; i++)
+            {
+                applist.Add(authgrid.Items.GetItemAt(i).ToString());
+            }
+
+            IEnumerable<string> s = dblist.Except(applist);
+            if (s.Count() > 0)
+            {
+                string res = "";
+                int ind = s.ElementAt(0).IndexOf("|");
+                string id = s.ElementAt(0).Substring(0, ind);
+                Author changedauthor;
+                foreach (var v in authgrid.Items)
+                {
+                    changedauthor = (Author)v;
+                    if (changedauthor.authornamecode == id)
+                    {
+                        try
+                        {
+                            SqlCommand cmmd = new SqlCommand();
+                            cmmd.CommandText = "update authors set authorname=@authorname where authornamecode=@id";
+                            cmmd.Parameters.AddWithValue("@authorname", changedauthor.name);
+                            cmmd.Parameters.AddWithValue("@id", id);
+                            cmmd.Connection = connection;
+                            cmmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < s.Count(); i++)
+                {
+                    res = s.ElementAt(i);
+                }
+                MessageBox.Show("Изменено: " + res);
+                
+            }
+            readDBbook();
+        }
     }
 
     public class book
     {
+        public override string ToString()//return key + name + size + authorname 
+        {
+            string str="";
+            str = key + name + size + authorname;
+            return str;
+        }
         public string key { get; set; }
         public string name { get; set; }
         public string size { get; set; }
@@ -334,6 +475,12 @@ namespace lab8
     }
     public class Author
     {
+        public override string ToString()
+        {
+            string str = "";
+            str += authornamecode + "|" + name;
+            return str;
+        }
         public string authornamecode { get; set; }
         public string name { get; set; }
     }
