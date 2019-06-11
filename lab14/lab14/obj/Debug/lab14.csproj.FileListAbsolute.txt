@@ -1,0 +1,15 @@
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14.csprojAssemblyReference.cache
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\MainWindow.g.cs
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\App.g.cs
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14_MarkupCompile.cache
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14_MarkupCompile.lref
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\bin\Debug\lab14.exe.config
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\bin\Debug\lab14.exe
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\bin\Debug\lab14.pdb
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\MainWindow.baml
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14.g.resources
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14.Properties.Resources.resources
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14.csproj.GenerateResource.cache
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14.csproj.CoreCompileInputs.cache
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14.exe
+C:\Users\илья\Desktop\OOP\labs\labsOOPsem2\lab14\lab14\obj\Debug\lab14.pdb

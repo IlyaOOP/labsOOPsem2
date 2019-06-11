@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab14"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="800">
     <Grid>
-        
+        <Canvas Name="canvas" HorizontalAlignment="Left" Height="521" VerticalAlignment="Top" Width="615" Margin="179,0,-0.4,-0.2"/>
+        <Button Content="Adapter" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="AdapterClick" />
+        <Button Content="Decorator" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="75" Click="DecoratorClick"/>
+        <Button Content="Composite" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Width="75" Click="CompositeClick"/>
+
     </Grid>
 </Window>
