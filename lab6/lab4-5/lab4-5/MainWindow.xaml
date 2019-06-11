@@ -12,6 +12,7 @@
         <Style x:Key="a" TargetType="Button">
             <Style.Triggers>
                 <MultiTrigger>
+                    <!--триггер-->
                     <MultiTrigger.Conditions>
                         <Condition Property="Control.IsMouseOver" Value="True"></Condition>
                     </MultiTrigger.Conditions>

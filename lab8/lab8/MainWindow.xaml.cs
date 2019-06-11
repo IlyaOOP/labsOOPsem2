@@ -288,9 +288,8 @@ namespace lab8
                 command.Parameters.AddWithValue("@code", selected.authornamecode);
                 MessageBox.Show("удалено " + command.ExecuteNonQuery());
             }
-            catch(Exception ex)
+            catch
             {
-                MessageBox.Show("unknown error"+ex.Message);
             }
         }
 
@@ -317,9 +316,8 @@ namespace lab8
                 command.Parameters.AddWithValue("@key", selected.key);
                 MessageBox.Show("удалено " + command.ExecuteNonQuery());
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("unknown error" + ex.Message);
             }
         }
 
